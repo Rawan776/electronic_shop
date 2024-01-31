@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef , useState} from 'react';
 
 import classes from './AddProduct.module.css';
 
@@ -7,7 +7,13 @@ function AddProduct(props) {
   const imageRef = useRef('');
   const ratingRef = useRef('');
   const PriceRef = useRef('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
+//   if (selectedImage) {
+//     const formData = new FormData();
+//     formData.append('image', selectedImage);
+//   }
+  //const formData = new FormData();
 
   function submitHandler(event) {
     event.preventDefault();
@@ -19,9 +25,26 @@ function AddProduct(props) {
       price : PriceRef.current.value,
    
     };
-
+     
     props.onAddProduct(product);
   }
+
+
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (file) {
+      // Use FileReader to convert the selected image to a data URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setSelectedImage(null);
+    }
+  };
 
   return (
     <form onSubmit={submitHandler}>
@@ -31,7 +54,7 @@ function AddProduct(props) {
       </div>
       <div className={classes.control}>
         <label htmlFor='image'>image</label>
-        <input type='image' id='rating' ref={ratingRef} />
+        <input type="file" id="image" accept="image/*"  ref={imageRef} onChange={handleImageChange} />
       </div>
       <div className={classes.control}>
         <label htmlFor='rating'>Rate product [1-5] : </label>

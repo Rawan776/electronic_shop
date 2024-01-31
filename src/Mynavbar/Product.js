@@ -7,7 +7,7 @@ const Product = (props) => {
     <tr>
       <td>{props.id}</td>
       <td>{props.title}</td>
-      <td>{props.image}</td>
+      <td><img src={props.image} alt="selected" style={{ maxWidth: '50px' }}/></td>
       <td>{props.price}</td>
       <td>{props.rating}</td>
     </tr>
