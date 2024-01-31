@@ -12,8 +12,7 @@ import MyvalueSection from './ValuesSection/valueSection';
 import MyinstgramSection from './InstgramSection/instgramSection';
 import Mybanner2Section from './Banner2Section/banner2Section';
 import MyfooterSection from './FooterSection/footerSection';
-import { Router } from 'react-router-dom';
-import Dasboard from './Mynavbar/Dashboard';
+
 function App() {
   return (
     <React.Fragment>
@@ -23,6 +22,7 @@ function App() {
       <MybrandLogos />
       <MynewArrival />
       <MyshopCollection />
+      {/* have props of array of object of data to update */}
       <MybestSeller />
       <MybannerSection/>
       <MyvalueSection/>
